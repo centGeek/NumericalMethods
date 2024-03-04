@@ -30,15 +30,12 @@ def styczne(funkcja, funkcja_pochodna, xi):
     return xi - funkcja(xi) / funkcja_pochodna(xi)
 
 def sinus(x):
-    return np.sin(x)
+    return 5 * np.sin(x) - 3 
 
 def wielomian(x):
-    return x**3 - 2*x**2 - 5
+    return x * x * (x - 2) - 5
 def poch_wielomian(x):
-    x = symbols('x')
-    wielomian_symb = wielomian(x)
-    return diff(wielomian_symb, x)
-
+    return
 
 def wykladnicza(x):
     return np.exp(x) - 2
