@@ -3,21 +3,30 @@ import numpy as np
 import matplotlib.pyplot as plt
 from colorama import init, Fore
 from funkcje_matematyczne import Funkcje_Matematyczne
-import przyklady_funkcji as pf
+import przyklady_funkcji as pf 
+import funkcje_zlozone as fz
 init(autoreset=True)
 fm = Funkcje_Matematyczne()
-wybrana_funkcja_string = input("Podaj nr funkcji ktora chcesz wybrac: \n'1' oznacza sinusoidalną \n'2' oznacza wielomianową \n'3' oznacza wykładniczą\n")
+wybrana_funkcja_string = input("Podaj nr funkcji ktora chcesz wybrac: \n'1' oznacza sinusoidalną \n'2' oznacza wielomianową \n'3' oznacza wykładniczą\n'4' oznacza złożoną\n")
 if wybrana_funkcja_string == '1':
     wybrana_funkcja = pf.sinus
     wybrana_funkcja_poch = pf.poch_sinus
 if wybrana_funkcja_string == '2':
-
     wybrana_funkcja = pf.wielomian
     wybrana_funkcja_poch = pf.poch_wielomian
 if wybrana_funkcja_string == '3':
     wybrana_funkcja = pf.wykladnicza
     wybrana_funkcja_poch = pf.pochodna_wykladniczej
-
+if wybrana_funkcja_string == '4':
+     wybor = input("Wybierz odpowiednią kombinację funkcji, które należy złączyć \n1.Wielomianowa i Wykladnicza, \n2.Trygonometryczna i Wykladnicza \n3.Trygonometryczna i Wielomianowa\n4.Wszystkie podane powyzej\n")
+     if(wybor=='1'):
+            wybrana_funkcja = fz.wykladnicza_i_wielomian
+     if(wybor=='2'):
+            wybrana_funkcja =  fz.trygonometryczna_i_wykladnicza
+     if(wybor=='3'):
+            wybrana_funkcja =  fz.trygonometryczna_i_wielomian
+     if(wybor=='4'):
+            wybrana_funkcja =  fz.wszystkie
 
 lewy_koniec_przedzialu_string = input("Podaj najmniejsza wartosc x, ktora bierzemy pod uwage(lewy kraniec przedzialu):")
 lewy_koniec_przedzialu = []
@@ -44,33 +53,33 @@ else:
             print("Miejscem zerowym funkcji jest:" + str(miejsce_zerowe))
         else:
             x_poczatkowe = input("Podaj poczatkowa wartosc x:")
-            miejsce_zerowe_s = [Funkcje_Matematyczne.konwersja_string_na_double(x_poczatkowe)]
+            miejsce_zerowe_s = [fm.konwersja_string_na_double(x_poczatkowe)]
             while abs(wybrana_funkcja(miejsce_zerowe_s[-1])) >= epsilon:
                 if wybrana_funkcja_poch(miejsce_zerowe_s[-1] == 0):
                     print("Przerwano wykonywanie algorytmu, poniewaz pochodna funkcji wynosi 0.")
                     epsilon = float('inf')
                 else:
-                    miejsce_zerowe_s.append(Funkcje_Matematyczne.styczne(wybrana_funkcja, wybrana_funkcja_poch, miejsce_zerowe_s[-1]))
+                    miejsce_zerowe_s.append(fm.styczne(wybrana_funkcja, wybrana_funkcja_poch, miejsce_zerowe_s[-1]))
                     print("Miejscem zerowym funkcji jest:" + str(miejsce_zerowe_s[-1]))
     else:
         ilosc_iteracji_string = input("Podaj ilosc iteracji, po ktorych ma sie zakonczyc algorytm:")
-        ilosc_iteracji = Funkcje_Matematyczne.konwersja_string_na_integer(ilosc_iteracji_string)
+        ilosc_iteracji = fm.konwersja_string_na_integer(ilosc_iteracji_string)
         iterator = 0
         wybor_metody = input ("Jesli chcesz, by zastosowano metode bisekcji, napisz '1', jesli chcesz, by algorytm zastosowal metode stycznych, napisz cokolwiek innego:")
         if wybor_metody == '1':
             while ilosc_iteracji > iterator:
-                miejsce_zerowe = Funkcje_Matematyczne.bisekcja(wybrana_funkcja, lewy_koniec_przedzialu, prawy_koniec_przedzialu) #indeks -1 w python oznacza ostatni element tablicy
+                miejsce_zerowe = fm.bisekcja(wybrana_funkcja, lewy_koniec_przedzialu, prawy_koniec_przedzialu) #indeks -1 w python oznacza ostatni element tablicy
                 iterator += 1
             print("Miejscem zerowym funkcji jest:" + str(miejsce_zerowe))
         else:
             x_poczatkowe = input("Podaj poczatkowa wartosc x:")
-            miejsce_zerowe_s = [Funkcje_Matematyczne.konwersja_string_na_double(x_poczatkowe)]
+            miejsce_zerowe_s = [fm.konwersja_string_na_double(x_poczatkowe)]
             while ilosc_iteracji > iterator:
                 if wybrana_funkcja_poch(miejsce_zerowe_s[-1] == 0):
                     print("Przerwano wykonywanie algorytmu, poniewaz pochodna funkcji wynosi 0.")
                     iterator = ilosc_iteracji
                 else:
-                    miejsce_zerowe_s.append(Funkcje_Matematyczne.styczne(wybrana_funkcja, wybrana_funkcja_poch, miejsce_zerowe_s[-1]))
+                    miejsce_zerowe_s.append(fm.styczne(wybrana_funkcja, wybrana_funkcja_poch, miejsce_zerowe_s[-1]))
                     iterator += 1
                     print("Miejscem zerowym funkcji jest:" + str(miejsce_zerowe_s[-1]))
 przedzialy_funkcji = np.linspace(int(lewy_koniec_przedzialu_string), int(prawy_koniec_przedzialu_string), 1000)
