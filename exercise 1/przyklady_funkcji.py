@@ -11,11 +11,8 @@ def poch_wielomian(x):
 
 def wykladnicza(x):
     return np.exp(x) - 2
-def pochodna_wykladniczej():
-    x = symbols('x')
-    wykladnicza_sym =np.exp(x) - 2
-    pochodna = diff(wykladnicza_sym, x)
-    return pochodna
+def pochodna_wykladniczej(x):
+    return np.e ** x
 
 def poch_sinus(x):
     return 5 * np.cos(x)
