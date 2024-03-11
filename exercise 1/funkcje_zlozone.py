@@ -9,10 +9,10 @@ def trygonometryczna_i_wykladnicza(x):
 def wszystkie(x):
      return 5 * np.sin(x)  + x * x * (x - 2)  +np.exp(x) - 10
 def pochodna_wykladnicza_i_wielomian(x):
-    return np.e**2 + 3 * x * x - 4 * x
+    return np.e**2 + x * (3 * x -4)
 def poch_trygonometryczna_i_wykladnicza(x):
     return 5 * np.cos(x) + np.e**2
 def poch_trygonometryczna_i_wielomian(x):
-    return 5 * np.cos(x) + 3 * x * x - 4 * x
+    return 5 * np.cos(x) + x * (3 * x -4)
 def poch_wszystkie(x):
-    return 5 * np.cos(x) + np.e**2 + 3 * x * x - 4 * x
+    return 5 * np.cos(x) + np.e**2 + x * (3 * x -4)

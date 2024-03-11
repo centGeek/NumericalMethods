@@ -6,6 +6,7 @@ from funkcje_matematyczne import Funkcje_Matematyczne
 import przyklady_funkcji as pf 
 import funkcje_zlozone as fz
 fm = Funkcje_Matematyczne()
+miejsce_zerowe = ""
 wybrana_funkcja_string = input("Podaj nr funkcji ktora chcesz wybrac: \n'1' oznacza sinusoidalną \n'2' oznacza wielomianową \n'3' oznacza wykładniczą\n'4' oznacza złożoną\n")
 if wybrana_funkcja_string == '1':
     wybrana_funkcja = pf.sinus
@@ -91,7 +92,15 @@ indeks_miejsca_zerowego = np.abs(przedzialy_funkcji - miejsce_zerowe).argmin()
 y_punkt = funkcja_do_wykresu[indeks_miejsca_zerowego]
 plt.plot(przedzialy_funkcji, funkcja_do_wykresu)
 plt.title('Wykres funkcji')
-plt.scatter(miejsce_zerowe, y_punkt, color='red', label=f'Punkt ({miejsce_zerowe}, {y_punkt})', zorder=5)
+is_local = "miejsce_zerowe_s" in locals()
+if is_local:
+     zmienna = miejsce_zerowe_s[-1]
+     indeks_miejsca_zerowego_s = np.abs(przedzialy_funkcji - miejsce_zerowe_s[-1]).argmin()     
+     y_punkt_s = funkcja_do_wykresu[indeks_miejsca_zerowego_s]
+     plt.scatter(zmienna, y_punkt_s, color='red', label=f'Punkt ({zmienna}, {y_punkt})', zorder=5)
+     
+else:
+     plt.scatter(miejsce_zerowe, y_punkt, color='red', label=f'Punkt ({miejsce_zerowe}, {y_punkt})', zorder=5)
 plt.xlabel('x')
 plt.ylabel('f(x)')
 plt.grid(True)
