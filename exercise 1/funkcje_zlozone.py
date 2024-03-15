@@ -5,14 +5,14 @@ def wykladnicza_i_wielomian(x):
 def trygonometryczna_i_wielomian(x):
    return 5 * np.sin(x)  + x * x * (x - 2) - 8
 def trygonometryczna_i_wykladnicza(x):
-    return 5 * np.sin(x) + np.exp(x) - 5
+    return np.sin(np.exp(x))
 def wszystkie(x):
-     return 5 * np.sin(x)  + x * x * (x - 2)  +np.exp(x) - 10
-def pochodna_wykladnicza_i_wielomian(x):
-    return np.e**2 + x * (3 * x -4)
-def poch_trygonometryczna_i_wykladnicza(x):
-    return 5 * np.cos(x) + np.e**2
-def poch_trygonometryczna_i_wielomian(x):
-    return 5 * np.cos(x) + x * (3 * x -4)
-def poch_wszystkie(x):
-    return 5 * np.cos(x) + np.e**2 + x * (3 * x -4)
+     return np.exp(np.sin(x * x - 1)) - 2
+def wykladnicza_i_wielomian_poch(x):
+    return np.exp(x) + x * (3 * x - 4)
+def trygonometryczna_i_wykladnicza_poch(x):
+    return np.cos(np.exp(x)) * np.exp(x)
+def trygonometryczna_i_wielomian_poch(x):
+    return 5 * np.cos(x) + x * (3 * x - 4)
+def wszystkie_poch(x):
+    return 2 * x * np.exp(np.sin(x * x - 1)) * np.cos(x * x -1)
