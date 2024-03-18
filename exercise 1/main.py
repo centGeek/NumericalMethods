@@ -7,7 +7,7 @@ import przyklady_funkcji as pf
 import funkcje_zlozone as fz
 init(autoreset=True)
 fm = Funkcje_Matematyczne()
-wybrana_funkcja_string = input("Podaj nr funkcji ktora chcesz wybrac: \n'1' oznacza sinusoidalną \n'2' oznacza wielomianową \n'3' oznacza wykładniczą\n'4' oznacza złożoną\n")
+wybrana_funkcja_string = input("Podaj nr funkcji ktora chcesz wybrac: \n'1' oznacza sinusoidalną \n'2' oznacza wielomianową \n'3' oznacza wykładniczą\n'4' oznacza wielomianowa podana przez uzytkownika\n'5' oznacza złożoną\n")
 if wybrana_funkcja_string == '1':
     wybrana_funkcja = pf.sinus
     wybrana_funkcja_poch = pf.poch_sinus
@@ -18,6 +18,13 @@ if wybrana_funkcja_string == '3':
     wybrana_funkcja = pf.wykladnicza
     wybrana_funkcja_poch = pf.pochodna_wykladniczej
 if wybrana_funkcja_string == '4':
+    stopien_string = input("Podaj stopien wielomianu ktory chcesz zbadac:")
+    stopien = int(stopien_string) #fm.konwersja_string_na_integer(stopien_string)
+    wspolczynniki = []
+    wspolczynniki = fm.podajwielomian(stopien)
+    wybrana_funkcja = fm.funkcja_horner(wspolczynniki)
+    wybrana_funkcja_poch = fm.funkcja_horner(fm.horner_poch(wspolczynniki))
+if wybrana_funkcja_string == '5':
      wybor = input("Wybierz odpowiednią kombinację funkcji, które należy złączyć \n1.Wielomianowa i Wykladnicza, \n2.Trygonometryczna i Wykladnicza \n3.Trygonometryczna i Wielomianowa\n4.Wszystkie podane powyzej\n")
      if(wybor=='1'):
             wybrana_funkcja = fz.wykladnicza_i_wielomian
