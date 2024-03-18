@@ -27,5 +27,33 @@ class Funkcje_Matematyczne:
     def styczne(self, funkcja, funkcja_pochodna, xi):
         return xi - funkcja(xi) / funkcja_pochodna(xi)
 
+    def podajwielomian(self, stopien):
+        wielomian = []
+        for i in range(stopien + 1):
+            wspolczynnik_string = input("Podaj współczynnik przy x^" + str(i) + ": ")
+            wspolczynnik = self.konwersja_string_na_double(wspolczynnik_string)
+            wielomian.append(wspolczynnik)
+        wielomian.reverse()
+        return wielomian
+    
+    def funkcja_horner(self, wielomian):
+        def horner(x):
+            n = len(wielomian)
+            result = wielomian[0]
+            for i in range(1, n):
+                result = result * x + wielomian[i]
+            return result
+        return horner
+    
+    def horner_poch(self, wielomian):
+        derivative_coeffs = []
+        n = len(wielomian)
+        for i in range(1, n):
+            derivative_coeffs.append(wielomian[i] * i)
+        return derivative_coeffs
+
+
+
+
 
 
