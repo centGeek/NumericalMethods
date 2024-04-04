@@ -11,22 +11,22 @@ class Dzialania_na_macierzach:
         for j in range(len(matrix[0])):
             matrix[row1][j], matrix[row2][j] = matrix2[row2][j], matrix2[row1][j]
 
-    def isCalculable(self, row, result):
+    def isCalculable(self, row, result, e):
         for i in row:
-            if round(i, 8) != 0:
+            if round(i, e) != 0:
                 return 0 #zwraca 0, jesli uklad wedlug tego wiersza jest oznaczony
-        if round(result, 8) != 0:
+        if round(result, e) != 0:
             return 1 #zwraca 1 dla ukladu sprzecznego
         return 2 #zwraca 2 dla ukladu nieoznaczonego
     
-    def Jordan(self, matrix, result, dimension):
+    def Jordan(self, matrix, result, dimension, e):
         lista_buforowa = [0] * dimension
         for k in range(dimension): #k oznacza indeks kolumny
             for row in matrix:  #fragment sprawdzajacy czy na tym etapie mozna uklad uznac za sprzeczny lub nieoznaczony
-                if self.isCalculable(row, result[k]) == 1:
+                if self.isCalculable(row, result[k], e) == 1:
                     print("Układ sprzeczny")
                     return None
-                elif self.isCalculable(row, result[k]) == 2:
+                elif self.isCalculable(row, result[k], e) == 2:
                     print("Układ nieoznaczony")
                     return None
             max = abs(matrix[k][k]) #ustawiamy wiersze, by tworzyly macierz przekatniowo dominujaca(nie gwarantuje to idealnego rezultatu, ale bedzie zblizony)
@@ -36,10 +36,6 @@ class Dzialania_na_macierzach:
                     max = abs(matrix[k + i][k])
                     index = k + i
             if index != k:
-                #for i in range(dimension):
-                 #   lista_buforowa[i] = matrix[k][i]    # zapisujemy aktualny wiersz podmacierzy w liście buforowej
-                  #  matrix[k][i] = matrix[index][i]   # aktualny wiersz zamieniamy z wierszem z elementem podstawowym
-                   # matrix[index][i] = lista_buforowa[i]
                 self.switch_rows(matrix, k, index) #jesli pierwszy element nie byl najwiekszy dokonujemy zamiany wierszy
                 aux = result[index] #pamietajmy, ze przy zamianie wierszy nalezy tez zamienic elementy w tablicy wynikowej
                 result[index] = result[k]
@@ -54,6 +50,6 @@ class Dzialania_na_macierzach:
                     result[i] -= result[k] * aik
                     for j in range(dimension):
                          matrix[i][j] -= matrix[k][j] * aik     
-        result = [round(x, 8) for x in result]
+        result = [x for x in result]
         return result
             

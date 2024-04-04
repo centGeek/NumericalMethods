@@ -4,10 +4,11 @@ import matplotlib.pyplot as plt
 import os
 from dzialania_na_macierzach import Dzialania_na_macierzach as dnm
 
+e = 8
 dimension_string = input("Podaj wymiar macierzy:")
 dimension = int(dimension_string)
 
-def extract_numbers_from_file(file_path):
+def extract_numbers_from_file(file_path): #wczytywanie danych z pliku
     numbers = []
     with open(file_path, 'r') as file:
         for line in file:
@@ -25,7 +26,6 @@ script_directory = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(script_directory, 'macierz.txt')
 
 numbers = extract_numbers_from_file(file_path)
-print("Numbers extracted from the file:", numbers)
 
 matrix = np.array
 matrix = np.zeros((dimension, dimension))
@@ -45,7 +45,7 @@ for i in result:
     print(i)
 
 a = dnm()
-b = a.Jordan(matrix, result, dimension)
+b = a.Jordan(matrix, result, dimension, e)
 if b != None:
     print("Kolejne wartosci zmiennych to:", b)
                 
