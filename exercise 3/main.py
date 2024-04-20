@@ -19,8 +19,9 @@ nodes = []
 values = []
 for i in range(1, int(node_amount)+1):
     node = input("Wybierz położenie " + str(i) + " węzła \n")
-    values.append(pf.value_in_function(node, chose_function))
-    nodes.append(i)
+    double_node = float(node)
+    values.append(pf.value_in_function(double_node, chose_function))
+    nodes.append(float(node))
 
 
 def lagrange_interpolation(nodes, values, x):
@@ -37,17 +38,21 @@ def lagrange_interpolation(nodes, values, x):
     return result
 
 
-# Punkty do narysowania wykresu
-x_values = np.linspace(min(nodes), max(nodes), 10000)
-y_values = [lagrange_interpolation(nodes, values, x) for x in x_values]
+function_range = np.linspace(float(left), float(right), 1000)
+function_to_plot = chase_function(function_range)  # Założenie: chase_function została zdefiniowana wcześniej
 
 # Rysowanie wykresu
-plt.plot(x_values, y_values, label='Interpolacja Lagrange\'a', color='blue')
+plt.plot(function_range, function_to_plot, color='blue')
+
+interpolated_values = [lagrange_interpolation(nodes, values, x) for x in function_range]
+plt.plot(function_range, interpolated_values, color='green')
+
 plt.scatter(nodes, values, label='Węzły', color='red')
 plt.xlabel('x')
 plt.ylabel('f(x)')
 plt.title('Interpolacja Lagrange\'a')
 plt.legend()
 plt.grid(True)
-plt.xlim(left, right)
+
+
 plt.show()

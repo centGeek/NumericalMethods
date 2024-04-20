@@ -1,6 +1,6 @@
 import numpy as np
 def load_polynominal(x):
-    return x * x
+    return x * x + 3 * x + 5
 def load_linear(x):
     return 3 * x + 2
 def load_trigonometrical(x):

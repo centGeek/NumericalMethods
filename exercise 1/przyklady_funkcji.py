@@ -1,5 +1,4 @@
 import numpy as np
-from sympy import symbols, diff
 
 def sinus(x):
     return 5 * np.sin(x) - 3 
