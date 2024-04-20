@@ -6,7 +6,11 @@ chose_function = input("Podaj nr funkcji ktora chcesz wybrac: \n'1' oznacza lini
 if chose_function == '1':
     chase_function = pf.load_linear
 if chose_function == '2':
-    chase_function = pf.load_polynominal
+    level_string = input("Podaj stopien wielomianu ktory chcesz zbadac:")
+    stopien = int(level_string) #fm.konwersja_string_na_integer(stopien_string)
+    points = []
+    points = pf.podajwielomian(stopien)
+    chase_function = pf.funkcja_horner(points)
 if chose_function == '3':
     chase_function = pf.load_trigonometrical
 if chose_function == '4':
@@ -42,10 +46,10 @@ function_range = np.linspace(float(left), float(right), 1000)
 function_to_plot = chase_function(function_range)  # Założenie: chase_function została zdefiniowana wcześniej
 
 # Rysowanie wykresu
-plt.plot(function_range, function_to_plot, color='blue')
+plt.plot(function_range, function_to_plot, label='funkcja oryginalna', color='blue')
 
 interpolated_values = [lagrange_interpolation(nodes, values, x) for x in function_range]
-plt.plot(function_range, interpolated_values, color='green')
+plt.plot(function_range, interpolated_values, label = 'funcja interpolacyjna', color='green')
 
 plt.scatter(nodes, values, label='Węzły', color='red')
 plt.xlabel('x')
