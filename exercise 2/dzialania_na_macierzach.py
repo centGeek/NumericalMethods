@@ -50,6 +50,6 @@ class Dzialania_na_macierzach:
                     result[i] -= result[k] * aik
                     for j in range(dimension):
                          matrix[i][j] -= matrix[k][j] * aik     
-        result = [x for x in result]
+        result = [round(x, e) for x in result]
         return result
             

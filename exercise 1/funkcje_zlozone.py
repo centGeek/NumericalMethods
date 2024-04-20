@@ -1,4 +1,3 @@
-import przyklady_funkcji as pf 
 import numpy as np
 def wykladnicza_i_wielomian(x):
     return np.exp(x)  + x * x * (x - 2) - 7

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import os
 from dzialania_na_macierzach import Dzialania_na_macierzach as dnm
 
-e = 8
+e = 6
 dimension_string = input("Podaj wymiar macierzy:")
 dimension = int(dimension_string)
 
