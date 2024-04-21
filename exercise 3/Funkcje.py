@@ -1,4 +1,5 @@
 import numpy as np
+
 # def load_polynominal(x):
 #     return x *(x *(x + 3) + 4) + 5
 def load_linear(x):
@@ -7,6 +8,8 @@ def load_trigonometrical(x):
     return np.sin(x)
 def load_complex_functions(x):
     return x * x * (3 + x) + 3 * x + 10  * np.cos(x) + 3 * np.sin(x)
+def load_absolute_value(x):
+     return 3 * abs(x) + 2
 
 def value_in_function(x, chase_function, polynominal_list) -> int:
     value = 0
@@ -17,6 +20,8 @@ def value_in_function(x, chase_function, polynominal_list) -> int:
     if(chase_function == "3"):
             value = load_trigonometrical(x)
     if(chase_function == "4"):
+        value = load_absolute_value(x)
+    if(chase_function == "5"):
         value = load_complex_functions(x)
     return value
 def horner(polynominal):

@@ -3,7 +3,7 @@ import Funkcje as pf
 import matplotlib.pyplot as plt
 
 polynolmal_list = []
-chose_function = input("Podaj nr funkcji ktora chcesz wybrac: \n'1' oznacza liniową \n'2' oznacza wielomianową \n'3' oznacza trygonometryczną\n'4' oznacza złożoną\n")
+chose_function = input("Podaj nr funkcji ktora chcesz wybrac: \n'1' oznacza liniową \n'2' oznacza wielomianową \n'3' oznacza trygonometryczną\n'4' oznacza z modulem z argumentu\n'5' oznacza złożoną\n")
 if chose_function == '1':
     chase_function = pf.load_linear
 if chose_function == '2':
@@ -14,6 +14,8 @@ if chose_function == '2':
 if chose_function == '3':
     chase_function = pf.load_trigonometrical
 if chose_function == '4':
+    chase_function = pf.load_absolute_value
+if chose_function == '5':
     chase_function = pf.load_complex_functions
     
 left = input("Wybierz lewy przedział interpolacji \n")
