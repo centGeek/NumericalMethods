@@ -13,24 +13,28 @@ def value_in_function(x, chase_function, polynomial_list) -> int:
     if(chase_function == "1"):
         value = load_linear(x)
     if(chase_function == "2"):
-        for i in range(0, len(polynomial_list)):
-            value += polynomial_list[i] * (x ** i)
+            value = horner_in_place(x, polynomial_list)
     if(chase_function == "3"):
             value = load_trigonometrical(x)
     if(chase_function == "4"):
         value = load_complex_functions(x)
     return value
-def funkcja_horner(wielomian):
+def horner(polynominal):
     def horner(x):
         result = 0
-        for i in range(len(wielomian) - 1, -1, -1):
-            result = result * x + wielomian[i]
+        for i in range(len(polynominal) - 1, -1, -1):
+            result = result * x + polynominal[i]
         return result
     return horner
-def podajwielomian(stopien):
-        wielomian = []
+def horner_in_place(x, polynominal_list):
+    result = 0
+    for i in range(len(polynominal_list) - 1, -1, -1):
+        result = result * x + polynominal_list[i]
+    return result
+def give_polynominal(stopien):
+        polynominal = []
         for i in range(stopien + 1):
-            wspolczynnik_string = input("Podaj współczynnik przy x^" + str(i) + ": ")
-            wspolczynnik = float(wspolczynnik_string)
-            wielomian.append(wspolczynnik)
-        return wielomian
+            point_string = input("Podaj współczynnik przy x^" + str(i) + ": ")
+            point = float(point_string)
+            polynominal.append(point)
+        return polynominal

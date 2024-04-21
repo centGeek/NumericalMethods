@@ -9,8 +9,8 @@ if chose_function == '1':
 if chose_function == '2':
     level_string = input("Podaj stopien wielomianu ktory chcesz zbadac:")
     level = int(level_string) 
-    polynolmal_list = pf.podajwielomian(level)
-    chase_function = pf.funkcja_horner(polynolmal_list)
+    polynolmal_list = pf.give_polynominal(level)
+    chase_function = pf.horner(polynolmal_list)
 if chose_function == '3':
     chase_function = pf.load_trigonometrical
 if chose_function == '4':
