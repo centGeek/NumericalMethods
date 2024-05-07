@@ -1,5 +1,5 @@
 import numpy as np
-
+import os
 polynolmal_list = []
 accuracy = input("Podaj dokładność do obliczania: ")
 def function(x):
@@ -25,3 +25,25 @@ b = 1
 n = 100
 result = complex_newton_cortes(function, a, b, n)
 print("Wynik całkowania:", result)
+
+p = 4
+script_directory = os.path.dirname(os.path.abspath(__file__))
+
+filename = os.path.join(script_directory, 'hermite.txt')
+#filename = "hermite.txt"
+def read_data_from_file(filename, p):
+    data = []
+    with open(filename, 'r') as file:
+        found_n = False
+        for line in file:
+            if line.startswith("n = " + str(p)):
+                found_n = True
+            elif found_n and line.startswith("n = "):
+                break
+            elif found_n:
+                numbers = line.split('   ')
+                if numbers[0] != '\n':
+                    data.append((float(numbers[0]), float(numbers[1])))
+    return data
+data = read_data_from_file(filename, p)
+print(data)
