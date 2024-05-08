@@ -39,7 +39,8 @@ def read_data_from_file(filename, p):
             if line.startswith("n = " + str(p)):
                 found_n = True
             elif found_n and line.startswith("n = "):
-                break
+                lines = file.readlines()
+                line = lines[-1]
             elif found_n:
                 numbers = line.split('   ')
                 if numbers[0] != '\n':
