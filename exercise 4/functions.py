@@ -20,6 +20,22 @@ class Functions:
                     if numbers[0] != '\n':
                         data.append((float(numbers[0]), float(numbers[1]))) #numbers[0] contains xi, numbers[1] contains Ai
         return data
+    
+    def complex_newton_cortes(f, a, b, n):
+        if n % 2 != 0:
+            raise ValueError("Liczba podprzedziałów musi być parzysta")
+        
+        h = (b - a) / n
+        suma = f(a) + f(b)
+
+        for i in range(1, n, 2):
+            suma += 4 * f(a + i * h)
+
+        for i in range(2, n-1, 2):
+            suma += 2 * f(a + i * h)
+
+        wynik = (h / 3) * suma
+        return wynik
 
     def gauss_hermite(data, fun):
         sum = 0
