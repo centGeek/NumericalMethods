@@ -56,8 +56,8 @@ class Functions:
         previousSum = float('-inf')
         while condition:
             sum = 0.0
-            sumEven = 0.0
-            sumOdd = 0.0
+            aux1sum = 0.0
+            aux2sum = 0.0
 
             n = n * 2
             h = (b - a) / n
@@ -70,22 +70,20 @@ class Functions:
                 else:
                     fx.append(f(a + i * h))
                 if i % 2 == 0 and i != 0 and i != (amount - 1):
-                    sumEven = sumEven + 2 * fx[i]
+                    aux1sum = aux1sum + 2 * fx[i]
                 elif i % 2 != 0 and i != 0 and i != (amount - 1):
-                    sumOdd = sumOdd + 4 * fx[i]
+                    aux2sum = aux2sum + 4 * fx[i]
 
-            sum = (h / 3) * (fx[0] + fx[amount - 1] + sumEven + sumOdd)
+            sum = (h / 3) * (fx[0] + fx[amount - 1] + aux1sum + aux2sum)
             diff = math.fabs(sum - previousSum)
-            print(str(sum)+ " " + str(previousSum) + " " + str(diff))
             previousSum = sum
-            print(str(accuracy) + " " + str(accuracy - diff) + '\n')
             if math.fabs(diff) < accuracy:
                 condition = False
 
         return sum
         
     def limes (self, f, accuracy, weight):
-        lim = 5.0
+        lim = 10.0
         temp = 0.0
         result = 0.0
 
@@ -121,8 +119,8 @@ class Functions:
             sum += data[i][0] * fun(data[i][1])
         return sum
     
-    def error(n):
-        return math.factorial(n + 1) * math.sqrt(math.pi) / (2 ** (n + 1)) / math.factorial(2 * n + 2)
+    """def error(n):
+        return math.factorial(n + 1) * math.sqrt(math.pi) / (2 ** (n + 1)) / math.factorial(2 * n + 2)"""
 
     def linear(x):
         return x * 2 - 1
@@ -132,6 +130,9 @@ class Functions:
     
     def absolute(x):
         return math.fabs(x + 2) - 3
+    
+    def mixed(x):
+        return math.cos(x) - x * x * x
     
     def weight(x):
         return (math.e ** ((x ** 2) * - 1))

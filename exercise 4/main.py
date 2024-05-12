@@ -2,26 +2,22 @@ import numpy as np
 import os
 from functions import Functions as fun
 
-#a = float('-inf')
-#b = float('inf')
 value = 0
 
-choice_function = input("Podaj nr funkcji ktora chcesz wybrac: \n'1' oznacza liniową \n'2' oznacza wielomianową \n'3' oznacza trygonometryczną\n'4' oznacza z modulem z argumentu\n")
+choice_function = input("Podaj nr funkcji ktora chcesz wybrac: \n'1' oznacza liniową \n'2' oznacza wielomianową \n'3' oznacza trygonometryczną\n'4' oznacza z modulem z argumentu\n'5' oznacza mieszana\n")
 if choice_function == '1':
     chosen_function = fun.linear
-    #chosen_function_weight = fun.linear_weight
 elif choice_function == '2':
     level_string = input("Podaj stopien wielomianu ktory chcesz zbadac:")
     level = int(level_string) 
     polynomial_list = fun.give_polynomial(fun, level)
     chosen_function = fun.horner(polynomial_list)
-    #chosen_function_weight = fun.linear_weight(polynomial_list)
 elif choice_function == '3':
     chosen_function = fun.trygonometric
-    #chosen_function_weight = fun.trygonometric_weight
-else:
+elif choice_function == '4':
     chosen_function = fun.absolute
-    #chosen_function_weight = fun.absolute_weight
+else:
+    chosen_function = fun.mixed 
 
 choice_method = input("Podaj sposob calkowania, ktory chcesz wybrac: \n'1' jesli metode Newtona-Cotesa(Simpsona)\ncokolwiek innego jesli Gaussa Hermita\n")
 if choice_method == '1':
