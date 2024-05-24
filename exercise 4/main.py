@@ -34,6 +34,7 @@ else:
     script_directory = os.path.dirname(os.path.abspath(__file__))
     filename = os.path.join(script_directory, 'hermite.txt')
     data = fun.read_data_from_file(filename, number + 1) # + 1 as data in file shows n = 2 when it should be n = 1.
+    print(data)
     value = fun.gauss_hermite(data, chosen_function)
 
 print("Wynik całkowania:", value)
