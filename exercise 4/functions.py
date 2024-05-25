@@ -1,10 +1,11 @@
-import numpy as np
 import math
+import numpy as np
+
 class Functions:
     def __init__(self):
-        pass
+        init()
 
-    def read_data_from_file(self, filename, p):
+    def read_data_from_file(filename, p):
         data = []
         with open(filename, 'r') as file:
             found_n = False
@@ -36,8 +37,19 @@ class Functions:
                 result = result * x + polynominal[i]
             return result
         return horner
-    def weight(x):
-        return (math.e ** ((x ** 2) * - 1))
+    
+    """def horner_in_place(x, polynominal_list):
+        result = 0
+        for i in range(len(polynominal_list) - 1, -1, -1):
+            result = result * x + polynominal_list[i]
+        return result
+    
+    def horner_in_place_weight(x, polynominal_list):
+        result = 0
+        for i in range(len(polynominal_list) - 1, -1, -1):
+            result = result * x + polynominal_list[i]
+        return ((math.e ** ((-1) *x ** 2)) * result)"""
+       
     def complex_newton_cotes(self, f, a, b, accuracy, weight):
         n = 1
         condition = True
@@ -63,12 +75,13 @@ class Functions:
                     aux2sum = aux2sum + 4 * fx[i]
 
             sum = (h / 3) * (fx[0] + fx[amount - 1] + aux1sum + aux2sum)
-            diff = np.fabs(sum - previousSum)
+            diff = math.fabs(sum - previousSum)
             previousSum = sum
-            if np.fabs(diff) < accuracy:
+            if math.fabs(diff) < accuracy:
                 condition = False
 
         return sum
+        
     def limes (self, f, accuracy, weight):
         lim = 10.0
         temp = 0.0
@@ -83,7 +96,7 @@ class Functions:
             result += temp
             a = b
             b = b + ((lim - b) / 2)
-            if np.fabs(temp) < accuracy:
+            if math.fabs(temp) < accuracy:
                 condition = False
 
         a = (-1) * lim
@@ -94,37 +107,32 @@ class Functions:
             temp = self.complex_newton_cotes(self, f, a, b, accuracy, weight)
             result += temp
             b = a
-            a = a - ((lim - np.fabs(b)) / 2)
-            if np.fabs(temp) < accuracy:
+            a = a - ((lim - math.fabs(b)) / 2)
+            if math.fabs(temp) < accuracy:
                 condition = False
 
         return result
- 
+
+    def gauss_hermite(data, fun):
+        sum = 0
+        for i in range(len(data)):
+            sum += data[i][0] * fun(data[i][1])
+        return sum
+    
+    """def error(n):
+        return math.factorial(n + 1) * math.sqrt(math.pi) / (2 ** (n + 1)) / math.factorial(2 * n + 2)"""
+
     def linear(x):
-        return x * 2 - 1
+        return x * x * x
 
     def trygonometric(x):
-        return np.cos(2 * x * x + 1)
+        return math.cos(2 * x * x + 1)
     
     def absolute(x):
-        return np.fabs(x + 2) - 3
+        return math.fabs(x + 2) - 3
     
     def mixed(x):
-        return np.cos(x) - x * x * x
+        return math.cos(x) - x * x * x
     
-    def read_data_from_file(filename, p):
-        data = []
-        with open(filename, 'r') as file:
-            found_n = False
-            for line in file:
-                if line.startswith("n = " + str(p)):
-                    found_n = True
-                elif found_n and line.startswith("n = "):
-                    lines = file.readlines()
-                    line = lines[-1]
-                elif found_n:
-                    numbers = line.split('   ')
-                    if numbers[0] != '\n':
-                        data.append((float(numbers[0]), float(numbers[1]))) #numbers[0] contains xi, numbers[1] contains Ai
-        return data
-   
+    def weight(x):
+        return (math.e ** ((x ** 2) * - 1))
