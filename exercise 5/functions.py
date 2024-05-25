@@ -36,73 +36,13 @@ class Functions:
                 result = result * x + polynominal[i]
             return result
         return horner
+    
     def weight(x):
         return (math.e ** ((x ** 2) * - 1))
-    def complex_newton_cotes(self, f, a, b, accuracy, weight):
-        n = 1
-        condition = True
-        previousSum = float('-inf')
-        while condition:
-            sum = 0.0
-            aux1sum = 0.0
-            aux2sum = 0.0
-
-            n = n * 2
-            h = (b - a) / n
-            amount = n + 1
-            fx = []
-
-            for i in range(amount):
-                if weight == 1:
-                    fx.append(f(a + i * h) * self.weight(a + i * h))
-                else:
-                    fx.append(f(a + i * h))
-                if i % 2 == 0 and i != 0 and i != (amount - 1):
-                    aux1sum = aux1sum + 2 * fx[i]
-                elif i % 2 != 0 and i != 0 and i != (amount - 1):
-                    aux2sum = aux2sum + 4 * fx[i]
-
-            sum = (h / 3) * (fx[0] + fx[amount - 1] + aux1sum + aux2sum)
-            diff = np.fabs(sum - previousSum)
-            previousSum = sum
-            if np.fabs(diff) < accuracy:
-                condition = False
-
-        return sum
-    def limes (self, f, accuracy, weight):
-        lim = 10.0
-        temp = 0.0
-        result = 0.0
-
-        a = 0.0
-        b = lim
-        condition = True
-
-        while condition:
-            temp = self.complex_newton_cotes(self, f, a, b, accuracy, weight)
-            result += temp
-            a = b
-            b = b + ((lim - b) / 2)
-            if np.fabs(temp) < accuracy:
-                condition = False
-
-        a = (-1) * lim
-        b = 0.0
-        condition = True
-
-        while condition:
-            temp = self.complex_newton_cotes(self, f, a, b, accuracy, weight)
-            result += temp
-            b = a
-            a = a - ((lim - np.fabs(b)) / 2)
-            if np.fabs(temp) < accuracy:
-                condition = False
-
-        return result
- 
+    
     def linear(x):
         return x * 2 - 1
-
+    
     def trygonometric(x):
         return np.cos(2 * x * x + 1)
     

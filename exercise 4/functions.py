@@ -37,18 +37,7 @@ class Functions:
                 result = result * x + polynominal[i]
             return result
         return horner
-    
-    """def horner_in_place(x, polynominal_list):
-        result = 0
-        for i in range(len(polynominal_list) - 1, -1, -1):
-            result = result * x + polynominal_list[i]
-        return result
-    
-    def horner_in_place_weight(x, polynominal_list):
-        result = 0
-        for i in range(len(polynominal_list) - 1, -1, -1):
-            result = result * x + polynominal_list[i]
-        return ((math.e ** ((-1) *x ** 2)) * result)"""
+
        
     def complex_newton_cotes(self, f, a, b, accuracy, weight):
         n = 1

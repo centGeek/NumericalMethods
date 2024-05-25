@@ -23,31 +23,30 @@ else:
 
 left = float(input("Wybierz lewy przedział aproksymacji\n"))
 right = float(input("Wybierz prawy przedział aproksymacji\n"))
-number_string = input("Podaj ile chcesz przedzialow calkowania:\n")
-number = int(number_string)
 function_range = np.linspace(left, right, 1000)
 accuracy = float(input("Podaj dokładność dla metody całkowania: "))
-weight = int(input("Podaj wagę (1 lub 0): "))
+number_string = input("Podaj ile chcesz przedzialow calkowania:\n")
+number = int(number_string)
+script_directory = os.path.dirname(os.path.abspath(__file__))
+filename = os.path.join(script_directory, 'hermite.txt')
+data = fun.read_data_from_file(filename, number + 1)
+
 
 function_to_plot = chosen_function(function_range)
 script_directory = os.path.dirname(os.path.abspath(__file__))
 filename = os.path.join(script_directory, 'hermite.txt')
 data = fun.read_data_from_file(filename, number + 1)
+value = alg.gauss_hermite(data, chosen_function)
+max_degree = 5
+number_of_points = 20 
+x_values = np.linspace(-2, 2, 100)
+data = fun.read_data_from_file(filename, number_of_points + 1)
+approximated_values = [alg.hermite_approximation(fun.horner, x, max_degree, data) for x in x_values]
 
-hermite_approx = alg.hermite_interpolation(chosen_function, level, left, right, accuracy, weight)
-x_values = np.linspace(left, right, 400)
-print(x_values)
-original_values = np.array([chosen_function(x) for x in x_values])
-print(original_values)
-approx_values = np.array([hermite_approx(x) for x in x_values])
-
-plt.plot(x_values, original_values, label='Oryginalna funkcja')
-plt.plot(x_values, approx_values, label='Aproksymacja Hermite\'a', linestyle='dashed')
-
-
+plt.plot(x_values, [chosen_function(x) for x in x_values], label='Original function')
+plt.plot(x_values, approximated_values, label='Hermite approximation')
 plt.legend()
 plt.xlabel('x')
-plt.ylabel('y')
-plt.title('Aproksymacja funkcji przy użyciu wielomianów Hermite\'a')
-plt.grid(True)
+plt.ylabel('f(x)')
+plt.title('Function approximation using Hermite polynomials')
 plt.show()
