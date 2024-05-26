@@ -27,9 +27,11 @@ if choice_method == '1':
     if choice_weight == '1':
         value = fun.limes(fun, chosen_function, accuracy, 1)
     else:
-        choice_left = input("Podaj lewy kraniec przedzialu:\n")
-        choice_right = input("Podaj prawy kraniec przedzialu:\n")
-        value = fun.limes_ab(fun, chosen_function, accuracy, 2, float(choice_left), float(choice_right))
+        left_string = input("Podaj lewa granice przedzialu:\n")
+        right_string = input("Podaj prawa granice przedzialu:\n")
+        left = float(left_string)
+        right = float(right_string)
+        value = fun.complex_newton_cotes(fun, chosen_function, left, right, accuracy, 2)
 else:
     number_string = input("Podaj ile chcesz przedzialow calkowania:\n")
     number = int(number_string)

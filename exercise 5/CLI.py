@@ -11,7 +11,7 @@ def weight(x):
 
 
 poly1 = Polynomial([1, 4])  # x + 4
-trig1 = Trigonometric(1, 1, 0)  # 0.3 * cos(x)
+trig1 = Trigonometric(1, 1, 0)  # 0.3 * sin(x)
 poly2 = Polynomial([2, 1, -3])  # 2x^2 + x - 3
 trig2 = Trigonometric(0.6, 0.2, 0.3)
 mod = Modulus(1, 5, 8)  # 2 * | 5x + 8 |
@@ -40,9 +40,9 @@ def prompt_main():
 
 def prompt_function():
     print("dostepne funkcje: ")
-    print("1. f(x) = x+4")
-    print("2. f(x) = 0.3 * cos(x)")
-    print("3. f(x) = 3 * (0.3cos(x))^3 + 2 * (0.3cos(x))^2 + 0.3cos(x) + 4")
+    print("1. f(x) = x + 4")
+    print("2. f(x) = 0.3 * sin(x)")
+    print("3. f(x) = 3 * (0.3sin(x))^3 + 2 * (0.3sin(x))^2 + 0.3sin(x) + 4")
     print("4. f(x) = 2x^2 + x - 3 + 0.6 * sin(0.2 * x + 0.3)")
     print("5. f(x) = 1 * | 5x + 8 |")
     ch = input("Wybor: ")
