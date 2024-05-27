@@ -86,7 +86,7 @@ def horner(list_of_coefs, x):
 
 
 def approximation_error(left, right, function, approximation): 
-    # MSE=  1/n * ​∑i=1n​(f(xi​)−a(xi​))^2
+    # MSE=  1/n * ​∑i=1/n​(f(xi​)−a(xi​))^2, (f(x) - rzeczywista wartosc funkcji, oczekiwana wartosc funkcji a(x))
     error = 0
     points = np.linspace(left, right)
 

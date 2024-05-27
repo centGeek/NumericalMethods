@@ -9,7 +9,6 @@ class Polynomial(AbstractBaseFunction):
 
     def __call__(self, argument):
         return horner(argument, self.coefficients)
-    from math import sin
 
 class Trigonometric(AbstractBaseFunction):
   

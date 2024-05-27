@@ -1,7 +1,6 @@
 from CLI import prompt_main
 from hermitePolynomial import approximate, approximate_iterative, approximation_error
 from plot_service import plot_approximation
-
 check, function, left, right, tmp, nodes = prompt_main()
 
 app = None
