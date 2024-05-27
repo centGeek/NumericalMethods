@@ -14,7 +14,7 @@ poly1 = Polynomial([1, 4])  # x + 4
 trig1 = Trigonometric(1, 1, 0)  # 0.3 * sin(x)
 poly2 = Polynomial([2, 1, -3])  # 2x^2 + x - 3
 trig2 = Trigonometric(0.6, 0.2, 0.3)
-mod = Modulus(1, 5, 8)  # 2 * | 5x + 8 |
+mod = Modulus(1, 1, 0)  # 2 * | 5x + 8 |
 
 functions = (poly1, trig1, Nested([trig1, poly1]),lambda x: poly2(x) + trig2(x),mod)
 

@@ -50,6 +50,8 @@ def approximate(func, degree, nodes):
         gg = lambda x : hermite(x) * hermite(x)
 
         # Obliczanie i-tego współczynnika za pomocą kwadratury Gaussa-Hermite'a
+        # The numerator: Integral of fg = hermite(x) * func(x) * e^(-x^2) dx
+        # The denominator: Integral of gg = hermite(x)^2 * e^(-x^2) dx
         c = gauss_hermite_quadrature(nodes, fg) / gauss_hermite_quadrature(nodes, gg)
 
         coeffs.insert(0, c)
